@@ -105,8 +105,8 @@ body{font-family:system-ui,Arial;color:#fff}
 <div class="bi" onclick="showMsg()">💬<br>رسائل</div>
 <div class="bi prof-b" onclick="showProfile()">👤<br>بروفيل</div>
 </div>
-<script>
-document.getElementById('msgPage').style.display='none';
+<script
+  document.getElementById('msgPage').style.display='none';
 function showMsg(){
   let mp=document.getElementById('msgPage');
   mp.style.display='block';
@@ -124,6 +124,15 @@ function showHome(){
 function showFriends(){ showMsg(); }
 function showUpload(){ alert('ارفع فيديو'); }
 function showProfile(){ showMsg(); }
-</script>
+function searchChat(){
+  let q=document.getElementById('searchChat').value.toLowerCase();
+  document.querySelectorAll('.msg-item').forEach(el=>{
+    el.style.display = el.innerText.toLowerCase().includes(q) ? 'flex' : 'none';
+  });
+}
+document.querySelectorAll('.msg-item').forEach(el=>{
+  el.onclick=()=>{ alert(el.innerText.split('\n')[0]); }
+});
+  </script>
 </body>
 </html>
