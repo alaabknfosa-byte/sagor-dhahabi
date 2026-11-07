@@ -180,8 +180,11 @@ function doLike() {
   localStorage.setItem('sqold_likes', likes);
   if (likeEl) likeEl.innerText = likes;
 }
-let likeBtn = likeEl ? likeEl.closest('button') : null;
-if (likeBtn) likeBtn.onclick = doLike;
+if (likeEl) {
+  likeEl.onclick = doLike;
+  if (likeEl.parentElement) likeEl.parentElement.onclick = doLike;
+  if (likeEl.parentElement && likeEl.parentElement.parentElement) likeEl.parentElement.parentElement.onclick = doLike;
+}
 </script>
 </div>
 </body>
