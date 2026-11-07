@@ -172,6 +172,16 @@ localStorage.setItem('sqold_real', JSON.stringify(chats));
 document.getElementById('newMsg').value='';
 showReal();
 }
+  let likes = Number(localStorage.getItem('sqold_likes') || 0);
+let likeEl = document.getElementById('likeCount');
+if (likeEl) likeEl.innerText = likes;
+function doLike() {
+  likes++;
+  localStorage.setItem('sqold_likes', likes);
+  if (likeEl) likeEl.innerText = likes;
+}
+let likeBtn = likeEl ? likeEl.closest('button') : null;
+if (likeBtn) likeBtn.onclick = doLike;
 </script>
 </div>
 </body>
