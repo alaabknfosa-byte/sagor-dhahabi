@@ -109,7 +109,7 @@ body{font-family:system-ui,Arial;color:#fff}
 
 function showMsg(){
   
-  alert('الزر يخدم!'); mp=document.getElementById('msgPage');
+ mp=document.getElementById('msgPage');
   if(!mp) return;
   mp.classList.add('show');
   mp.style.display='flex';
@@ -132,15 +132,7 @@ function showHome(){
   }
   window.scrollTo(0,0);
 }
-function showMsg(){
-  var mp=document.getElementById('msgPage');
-  if(!mp) return;
-  var el=mp.previousElementSibling;
-  while(el){ el.style.display='none'; el=el.previousElementSibling; }
-  mp.classList.add('show');
-  mp.style.display='block';
-  window.scrollTo(0,0);
-}
+
   function showFriends(){ showMsg(); }
 function showUpload(){ alert('ارفع فيديو'); }
 function showProfile(){ showMsg(); }
