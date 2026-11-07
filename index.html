@@ -106,32 +106,43 @@ body{font-family:system-ui,Arial;color:#fff}
 <div class="bi prof-b" onclick="showProfile()">👤<br>بروفيل</div>
 </div>
 <script
-  document.getElementById('msgPage').style.display='none';
+
 function showMsg(){
-  let mp=document.getElementById('msgPage');
-  mp.style.display='block';
-  let el=mp.previousElementSibling;
-  while(el){ if(!el.classList.contains('bottom')) el.style.display='none'; el=el.previousElementSibling; }
+  var mp=document.getElementById('msgPage');
+  if(!mp) return;
+  mp.classList.add('show');
+  mp.style.display='flex';
+  var el=mp.previousElementSibling;
+  while(el){
+    el.style.display='none';
+    el=el.previousElementSibling;
+  }
   window.scrollTo(0,0);
 }
 function showHome(){
-  let mp=document.getElementById('msgPage');
+  var mp=document.getElementById('msgPage');
+  if(!mp) return;
+  mp.classList.remove('show');
   mp.style.display='none';
-  let el=mp.previousElementSibling;
-  while(el){ if(!el.classList.contains('bottom')) el.style.display='block'; el=el.previousElementSibling; }
+  var el=mp.previousElementSibling;
+  while(el){
+    el.style.display='';
+    el=el.previousElementSibling;
+  }
   window.scrollTo(0,0);
 }
 function showFriends(){ showMsg(); }
 function showUpload(){ alert('ارفع فيديو'); }
 function showProfile(){ showMsg(); }
 function searchChat(){
-  let q=document.getElementById('searchChat').value.toLowerCase();
-  document.querySelectorAll('.msg-item').forEach(el=>{
+  var inp=document.getElementById('searchChat');
+  var q=inp?inp.value.toLowerCase():'';
+  document.querySelectorAll('.msg-item').forEach(function(el){
     el.style.display = el.innerText.toLowerCase().includes(q) ? 'flex' : 'none';
   });
 }
-document.querySelectorAll('.msg-item').forEach(el=>{
-  el.onclick=()=>{ alert(el.innerText.split('\n')[0]); }
+document.querySelectorAll('.msg-item').forEach(function(el){
+  el.onclick=function(){ alert(el.innerText.split('\n')[0]); };
 });
   </script>
 </body>
