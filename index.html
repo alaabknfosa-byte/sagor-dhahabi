@@ -147,5 +147,32 @@ document.querySelectorAll('.msg-item').forEach(function(el){
   el.onclick=function(){ alert(el.innerText.split('\n')[0]); };
 });
   </script>
+<div onclick="openRealMsgs()" style="position:fixed;bottom:20px;left:20px;background:#d4af37;color:#000;padding:12px 18px;border-radius:50px;font-weight:bold;z-index:9999;cursor:pointer;">💬 الرسائل</div>
+
+<div id="realMsgs" style="display:none;position:fixed;inset:0;background:#000;z-index:10000;padding:15px;">
+<div style="display:flex;justify-content:space-between;"><b style="color:#d4af37;">الرسائل</b><span onclick="document.getElementById('realMsgs').style.display='none'" style="font-size:24px;cursor:pointer;">✖</span></div>
+<hr>
+<div id="realList"></div>
+<div style="display:flex;gap:8px;margin-top:15px;"><input id="newMsg" placeholder="اكتب رسالة..." style="flex:1;padding:12px;border-radius:10px;border:none;"><button onclick="sendReal()" style="background:#d4af37;border:none;padding:12px;border-radius:10px;font-weight:bold;">إرسال</button></div>
+</div>
+
+<script>
+let chats = JSON.parse(localStorage.getItem('sqold_real') || '[]');
+function openRealMsgs(){ document.getElementById('realMsgs').style.display='block'; showReal(); }
+function showReal(){
+let box=document.getElementById('realList');
+if(chats.length==0){ box.innerHTML='<p style="text-align:center;color:#888;margin-top:30px">ما عندكش رسائل توا</p>'; return; }
+box.innerHTML = chats.map(c=>'<div style="background:#111;padding:14px;border-radius:12px;margin-bottom:10px;">'+c+'</div>').join('');
+}
+function sendReal(){
+let m=document.getElementById('newMsg').value.trim();
+if(!m) return;
+chats.push(m);
+localStorage.setItem('sqold_real', JSON.stringify(chats));
+document.getElementById('newMsg').value='';
+showReal();
+}
+</script>
+</div>
 </body>
 </html>
