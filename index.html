@@ -132,7 +132,16 @@ function showHome(){
   }
   window.scrollTo(0,0);
 }
-function showFriends(){ showMsg(); }
+function showMsg(){
+  var mp=document.getElementById('msgPage');
+  if(!mp) return;
+  var el=mp.previousElementSibling;
+  while(el){ el.style.display='none'; el=el.previousElementSibling; }
+  mp.classList.add('show');
+  mp.style.display='block';
+  window.scrollTo(0,0);
+}
+  function showFriends(){ showMsg(); }
 function showUpload(){ alert('ارفع فيديو'); }
 function showProfile(){ showMsg(); }
 function searchChat(){
