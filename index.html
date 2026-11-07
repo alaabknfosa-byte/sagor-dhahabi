@@ -106,12 +106,19 @@ body{font-family:system-ui,Arial;color:#fff}
 <div class="bi prof-b" onclick="showProfile()">👤<br>بروفيل</div>
 </div>
 <script>
+document.getElementById('msgPage').style.display='none';
 function showMsg(){
-  document.getElementById('msgPage').style.display='block';
+  let mp=document.getElementById('msgPage');
+  mp.style.display='block';
+  let el=mp.previousElementSibling;
+  while(el){ if(!el.classList.contains('bottom')) el.style.display='none'; el=el.previousElementSibling; }
   window.scrollTo(0,0);
 }
 function showHome(){
-  document.getElementById('msgPage').style.display='none';
+  let mp=document.getElementById('msgPage');
+  mp.style.display='none';
+  let el=mp.previousElementSibling;
+  while(el){ if(!el.classList.contains('bottom')) el.style.display='block'; el=el.previousElementSibling; }
   window.scrollTo(0,0);
 }
 function showFriends(){ showMsg(); }
