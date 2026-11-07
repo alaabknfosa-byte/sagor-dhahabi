@@ -178,13 +178,16 @@ if (likeEl) likeEl.innerText = likes;
 function doLike() {
   likes++;
   localStorage.setItem('sqold_likes', likes);
+ likeEl = document.querySelector('[id*="like"]');
   if (likeEl) likeEl.innerText = likes;
 }
-if (likeEl) {
-  likeEl.onclick = doLike;
-  if (likeEl.parentElement) likeEl.parentElement.onclick = doLike;
-  if (likeEl.parentElement && likeEl.parentElement.parentElement) likeEl.parentElement.parentElement.onclick = doLike;
-}
+document.addEventListener('click', function(e){
+  var t = e.target;
+  var txt = (t.innerText || t.textContent || '') + ' ' + ((t.parentElement && t.parentElement.innerText) || '');
+  if (txt.indexOf('❤') > -1 || txt.indexOf('♥') > -1 || txt.indexOf('🤍') > -1 || (t.id && t.id.indexOf('like') > -1)) {
+    doLike();
+  }
+});
 </script>
 </div>
 </body>
